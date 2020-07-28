@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_life/app/modules/find_test/repository/teste_covid_repository.dart';
 
 class FindTestPage extends StatefulWidget {
   @override
@@ -47,9 +48,9 @@ class _FindTestPageState extends State<FindTestPage> {
             child: Container(
                 child: ListView.builder(
                     padding: const EdgeInsets.all(8),
-                    itemCount: cardsTest().length,
+                    itemCount: CardRepository.cardsTest(searchQuery).length,
                     itemBuilder: (BuildContext context, int index) {
-                      var card = cardsTest()[index];
+                      var card = CardRepository.cardsTest(searchQuery)[index];
                       return Card(
                         child: ListTile(
                           onTap: sendToMarcarTeste,
@@ -72,7 +73,14 @@ class _FindTestPageState extends State<FindTestPage> {
                                 child: card.icon),
                           ),
                           title: Text('${card.title}'),
-                          subtitle: Text('${card.subtitle}'),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text('${card.subtitle}'),
+                              Text('Testes disponíveis: PCR/sorologia/teste-rápido'),
+                              Text('Preço médio: ${card.precoMedio()} '),
+                            ],
+                          ),
                         ),
                       );
                     })),
@@ -112,53 +120,7 @@ class _FindTestPageState extends State<FindTestPage> {
     });
   }
 
-  List<CardTest> cardsTest() {
-    var cards = [
-      CardTest(
-          "Drive-Thru",
-          "Estácionamento UNIEURO - Av. das Castanheiras - Águas Claras",
-          Icon(
-            Icons.directions_car,
-            color: Colors.brown[700],
-          )),
-      CardTest(
-          "Laboratório Sabin",
-          "Ceilândia St. M QNM 17",
-          Icon(
-            Icons.local_hospital,
-            color: Colors.redAccent,
-          )),
-      CardTest(
-          "Laboratório Sabin",
-          "BS Q 1 Bloco C Loja 16 D - Asa Sul",
-          Icon(
-            Icons.local_hospital,
-            color: Colors.redAccent,
-          )),
-      CardTest(
-          "Parque da Cidade",
-          "Estacionamento 4 - CES - Brasília, DF, 70297-400",
-          Icon(
-            Icons.directions_car,
-            color: Colors.brown[700],
-          )),
-    ];
-    return cards
-        .where((element) =>
-    element.title.toUpperCase().contains(searchQuery.toUpperCase()) ||
-        element.subtitle.toUpperCase().contains(searchQuery.toUpperCase()))
-        .toList();
-  }
-
   void sendToMarcarTeste() {
     //TODO implementar
   }
-}
-
-class CardTest {
-  final Icon icon;
-  final String title;
-  final String subtitle;
-
-  CardTest(this.title, this.subtitle, this.icon);
 }

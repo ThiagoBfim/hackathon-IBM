@@ -42,6 +42,7 @@ class WatsonAssistantV2Credential {
 
   static WatsonAssistantV2Credential fromJsonFile(String loadWatsonProperties) {
     Map<String, dynamic> properties = jsonDecode(loadWatsonProperties);
+    print(properties);
     return WatsonAssistantV2Credential(
       username: properties['username'],
       apiKey: properties['apiKey'],
@@ -59,7 +60,7 @@ class WatsonAssistantApiV2 {
     @required this.watsonAssistantCredential,
   });
 
-  Future<WatsonAssistantResponse> sendMessage(String textInput,
+  sendMessage(String textInput,
       WatsonAssistantContext context) async {
     try {
       var auth = 'Basic ' +
@@ -74,7 +75,7 @@ class WatsonAssistantApiV2 {
       http.Response newSession = await _getSessionWatsonAssistant(auth, _body);
       var parsedJsonSession = json.decode(newSession.body);
       String sessionId = parsedJsonSession['session_id'];
-
+      print(sessionId);
       var receivedText = await http.post(
         '${watsonAssistantCredential.url}/assistants/${watsonAssistantCredential
             .assistantID}/sessions/$sessionId/message?version=${watsonAssistantCredential

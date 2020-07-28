@@ -22,11 +22,11 @@ class _ChatBotPageState extends State<ChatBotPage> {
   WatsonAssistantApiV2 watsonAssistant;
   WatsonAssistantResponse watsonAssistantResponse;
   WatsonAssistantContext watsonAssistantContext =
-  WatsonAssistantContext(context: {});
+      WatsonAssistantContext(context: {});
 
   final responseController = TextEditingController();
 
-  void _callWatsonAssistant() async {
+  _callWatsonAssistant() async {
     watsonAssistantResponse = await watsonAssistant.sendMessage(
         responseController.text, watsonAssistantContext);
     setState(() {
@@ -49,13 +49,17 @@ class _ChatBotPageState extends State<ChatBotPage> {
   @override
   void initState() {
     super.initState();
-    initializeWatson();
+    initWatson();
   }
 
-  Future initializeWatson() async {
+  Future initWatson() async {
+    loadWatsonProperties()
+        .then((watsonProperties) => {loadWatson(watsonProperties)});
+  }
+
+  loadWatson(watsonProperties) {
     WatsonAssistantV2Credential _credential =
-    WatsonAssistantV2Credential.fromJsonFile(await loadWatsonProperties());
-    print(_credential.url);
+        WatsonAssistantV2Credential.fromJsonFile(watsonProperties);
     watsonAssistant =
         WatsonAssistantApiV2(watsonAssistantCredential: _credential);
     _callWatsonAssistant();
@@ -73,24 +77,19 @@ class _ChatBotPageState extends State<ChatBotPage> {
         backgroundColor: Theme.of(context).backgroundColor,
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 24.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              _buildWatsonQuestion(context),
-              SizedBox(
-                height: 18.0,
-              ),
-              _buildInputUserField(),
-              SizedBox(
-                height: 80.0,
-              ),
-              _buildWatsonDefinition(context),
-              SizedBox(
-                height: 18.0,
-              ),
-              buildButtonMarcarTeste(),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                SizedBox(height: 120.0),
+                _buildWatsonQuestion(context),
+                SizedBox(height: 18.0),
+                _buildInputUserField(),
+                SizedBox(height: 80.0),
+                _buildWatsonDefinition(context),
+                SizedBox(height: 18.0),
+                buildButtonMarcarTeste(),
+              ],
+            ),
           ),
         ),
       ),
@@ -107,7 +106,7 @@ class _ChatBotPageState extends State<ChatBotPage> {
   Visibility buildButtonMarcarTeste() {
     return Visibility(
       visible: _testResult != null ? _testResult.descricao?.isNotEmpty : false,
-      child: RaisedButton(
+      child: MaterialButton(
         onPressed: sendToMarcarTeste,
         textColor: Colors.white,
         color: Colors.red,
@@ -120,9 +119,9 @@ class _ChatBotPageState extends State<ChatBotPage> {
   }
 
   sendToMarcarTeste() => Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => FindTestPage()),
-  );
+        context,
+        MaterialPageRoute(builder: (context) => FindTestPage()),
+      );
 
   Widget _buildWatsonQuestion(BuildContext context) {
     return Visibility(
