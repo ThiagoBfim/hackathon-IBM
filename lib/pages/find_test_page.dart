@@ -1,6 +1,3 @@
-import 'dart:async';
-import 'package:testlife/pages/calendar_page.dart';
-import 'package:testlife/pages/home/bloc/bloc_drag_down.dart';
 import 'package:flutter/material.dart';
 
 class FindTestPage extends StatefulWidget {
@@ -55,7 +52,7 @@ class _FindTestPageState extends State<FindTestPage> {
                       var card = cardsTest()[index];
                       return Card(
                         child: ListTile(
-                          onTap: sendToCalendarPage,
+                          onTap: sendToMarcarTeste,
                           leading: Container(
                             decoration: new BoxDecoration(
                               borderRadius: new BorderRadius.all(
@@ -84,14 +81,6 @@ class _FindTestPageState extends State<FindTestPage> {
       ),
     );
   }
-
-
-  sendToCalendarPage() => Navigator.push(
-    context,
-    MaterialPageRoute(
-        builder: (context) => CalendarPage()),
-  );
-
 
   Widget _buildSearchField() {
     return TextField(
@@ -159,6 +148,10 @@ class _FindTestPageState extends State<FindTestPage> {
             element.title.toUpperCase().contains(searchQuery.toUpperCase()) ||
             element.subtitle.toUpperCase().contains(searchQuery.toUpperCase()))
         .toList();
+  }
+
+  void sendToMarcarTeste() {
+    //TODO implementar
   }
 }
 

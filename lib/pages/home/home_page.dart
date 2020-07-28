@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:testlife/pages/find_test_page.dart';
-import 'package:testlife/pages/home/widgets/card_bottom.dart';
+import 'package:testlife/pages/chat_bot_page.dart';
 import 'package:testlife/pages/home/bloc/bloc_home.dart';
-import 'package:testlife/pages/sintomas_page.dart';
+import 'package:testlife/pages/home/widgets/card_bottom.dart';
 import 'package:testlife/pages/perfil_page.dart';
+import 'package:testlife/pages/sintomas_page.dart';
 import 'package:testlife/pages/web_view_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage>
   List<CardBottomModel> getCardBottomButton() {
     return [
       CardBottomModel(
-          Icons.favorite, 'Marcar o teste', () => sendToMarcarTeste()),
+          Icons.favorite, 'Marcar o teste', () => sendToChatBotPage()),
       CardBottomModel(Icons.colorize, 'Marcar a vacina',
           () => showSnackBarEmDesenvolvimento()),
       CardBottomModel(Icons.warning, 'Estou com COVID?', sendToSintomasCovid),
@@ -97,10 +97,13 @@ class _HomePageState extends State<HomePage>
     ];
   }
 
-  sendToMarcarTeste() => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => FindTestPage()),
-      );
+
+
+  sendToChatBotPage() => Navigator.push(
+    context,
+    MaterialPageRoute(
+        builder: (context) => ChatBotPage()),
+  );
 
   showSnackBarEmDesenvolvimento() =>
       _scaffoldKey.currentState.showSnackBar(SnackBar(
