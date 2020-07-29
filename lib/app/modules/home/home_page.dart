@@ -118,7 +118,7 @@ class _HomePageState extends State<HomePage>
         builder: (context) => WebViewWidget(
             title: "Estou COVID",
             url:
-            "https://dasa.com.br/blog-coronavirus/estou-com-coronavirus-e-agora")),
+            "https://coronavirus.saude.gov.br/sobre-a-doenca#se-eu-ficar-doente")),
   );
 
   sendToSintomasCovid() => Navigator.push(
@@ -126,7 +126,7 @@ class _HomePageState extends State<HomePage>
     MaterialPageRoute(
         builder: (context) => WebViewWidget(
             title: "Sintomas",
-            url: "https://coronavirus.es.gov.br/#sintomas")),
+            url: "https://coronavirus.saude.gov.br/sobre-a-doenca#sintomas")),
   );
 
   sendToNumeroCasos() => Navigator.push(
@@ -141,7 +141,7 @@ class _HomePageState extends State<HomePage>
     MaterialPageRoute(
         builder: (context) => WebViewWidget(
             title: "Transmissão",
-            url: "https://coronavirus.es.gov.br/#transmissao")),
+            url: "https://coronavirus.saude.gov.br/sobre-a-doenca#transmissao")),
   );
 }
 

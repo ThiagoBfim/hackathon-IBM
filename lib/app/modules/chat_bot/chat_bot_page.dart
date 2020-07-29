@@ -3,6 +3,7 @@ import 'dart:async' show Future;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:test_life/app/modules/find_test/find_test_page.dart';
+import 'package:test_life/app/modules/orientacoes/orientacoes_page.dart';
 import 'package:test_life/app/shared/watson/watson_assistant_widget.dart';
 
 class ChatBotPage extends StatefulWidget {
@@ -106,14 +107,30 @@ class _ChatBotPageState extends State<ChatBotPage> {
   Visibility buildButtonMarcarTeste() {
     return Visibility(
       visible: _testResult != null ? _testResult.descricao?.isNotEmpty : false,
-      child: MaterialButton(
-        onPressed: sendToMarcarTeste,
-        textColor: Colors.white,
-        color: Colors.red,
-        padding: const EdgeInsets.all(8.0),
-        child: new Text(
-          "Marcar Teste",
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          MaterialButton(
+            onPressed: sendToOrientacoes,
+            textColor: Colors.white,
+            color: Colors.blue[700],
+            padding: const EdgeInsets.all(8.0),
+            child: new Text(
+              "Orientações",
+              style: TextStyle(fontSize: 22.0),
+            ),
+          ),
+          MaterialButton(
+            onPressed: sendToMarcarTeste,
+            textColor: Colors.white,
+            color: Colors.green[700],
+            padding: const EdgeInsets.all(8.0),
+            child: new Text(
+              "Marcar Teste",
+              style: TextStyle(fontSize: 22.0),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -121,6 +138,11 @@ class _ChatBotPageState extends State<ChatBotPage> {
   sendToMarcarTeste() => Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => FindTestPage()),
+      );
+
+  sendToOrientacoes() => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => OrientacoesPage(testResult: _testResult)),
       );
 
   Widget _buildWatsonQuestion(BuildContext context) {
@@ -179,15 +201,19 @@ class _ChatBotPageState extends State<ChatBotPage> {
 class SmartCovidTest {
   int risco; //0 - alto, 1 - medio, 2 - baixo
   String descricao;
+  String nomeRisco;
 
   static SmartCovidTest create(String watsonText) {
     SmartCovidTest testeCovid = new SmartCovidTest();
     if (watsonText.contains("altas")) {
       testeCovid.risco = 0;
+      testeCovid.nomeRisco = "Alto";
     } else if (watsonText.contains("médio")) {
       testeCovid.risco = 1;
+      testeCovid.nomeRisco = "Médio";
     } else if (watsonText.contains("baixo")) {
       testeCovid.risco = 2;
+      testeCovid.nomeRisco = "Baixo";
     }
     testeCovid.descricao = watsonText;
     return testeCovid;
@@ -196,11 +222,11 @@ class SmartCovidTest {
   Color getColorByRisk() {
     switch (risco) {
       case 0:
-        return Colors.red[800];
+        return Colors.red[100];
       case 1:
-        return Colors.yellow[800];
+        return Colors.yellow[100];
       case 2:
-        return Colors.blue[800];
+        return Colors.blue[100];
       default:
         return Colors.white;
     }
