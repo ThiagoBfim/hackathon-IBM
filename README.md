@@ -5,7 +5,12 @@ Um Hackathon que tem como proposito criar soluções com tecnologia para ajudar 
 
 ## Getting Started
 
-![](images-app/1.jpeg){ width: 200px; }
+![](images-app/1.jpeg =250x)
+![](images-app/2.jpeg =250x)
+![](images-app/3.jpeg =250x)
+![](images-app/4.jpeg =250x)
+![](images-app/5.jpeg =250x)
+![](images-app/6.jpeg =250x)
 
 ### Tecnologias
 
