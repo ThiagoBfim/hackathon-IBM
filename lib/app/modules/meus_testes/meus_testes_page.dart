@@ -75,8 +75,8 @@ class _MeusTestesPageState extends State<MeusTestesPage> {
           dataTeste: DateTime.now()),
       TestMarcadoCovid(
           icon: Icon(Icons.timer_off),
-          nomeTeste: "Teste rápido (IgM/IgG)",
-          localTeste: "Ceilândia St. M QNM 17",
+          nomeTeste: "RT-PCR",
+          localTeste: "BS Q 1 Bloco C Loja 16 D - Asa Sul",
           dataTeste: DateTime.now().subtract(Duration(days: 32))),
     ];
   }

@@ -145,16 +145,14 @@ class _MarcarTestePageState extends State<MarcarTestePage> {
               actions: <Widget>[
                 FlatButton(
                   child: Text('Fechar'),
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
+                  onPressed: sendToMarcarTeste,
                 )
               ],
             ));
   }
 
-  sendToMarcarTeste(TestCovid card) =>
-      Navigator.of(context).pushNamed("meus-testes");
+  sendToMarcarTeste() =>
+      Navigator.of(context).pushNamedAndRemoveUntil("meus-testes", ModalRoute.withName('/'));
 
   BoxDecoration _buildBoxShadow() {
     return BoxDecoration(

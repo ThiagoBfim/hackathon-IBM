@@ -52,7 +52,7 @@ class _RootPageState extends State<RootPage> {
               },
               child: AppBarHome(!bloc.selectPage.value)),
           preferredSize:
-          Size.fromHeight(MediaQuery.of(context).size.height * 0.13)),
+          Size.fromHeight(MediaQuery.of(context).size.height * 0.15)),
       body: StreamBuilder(
         stream: bloc.selectPage.stream,
         builder: (context, snapshot) {

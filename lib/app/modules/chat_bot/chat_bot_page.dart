@@ -205,13 +205,13 @@ class SmartCovidTest {
 
   static SmartCovidTest create(String watsonText) {
     SmartCovidTest testeCovid = new SmartCovidTest();
-    if (watsonText.contains("altas")) {
+    if (watsonText.contains("grave")) {
       testeCovid.risco = 0;
       testeCovid.nomeRisco = "Alto";
     } else if (watsonText.contains("médio")) {
       testeCovid.risco = 1;
       testeCovid.nomeRisco = "Médio";
-    } else if (watsonText.contains("baixo")) {
+    } else if (watsonText.contains("leve")) {
       testeCovid.risco = 2;
       testeCovid.nomeRisco = "Baixo";
     }

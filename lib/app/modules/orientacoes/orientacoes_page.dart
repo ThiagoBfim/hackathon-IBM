@@ -19,6 +19,7 @@ class _OrientacoesPageState extends State<OrientacoesPage> {
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         title: Text(widget.title),
+        backgroundColor: Theme.of(context).backgroundColor,
       ),
       body: _buildRiscos(context),
     );
