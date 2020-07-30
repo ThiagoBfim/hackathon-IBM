@@ -61,6 +61,7 @@ flutter:
     - assets/qrcode.png
     - assets/covid.webp
     - assets/covid-sintomas.jpeg
+    - assets/sabin.jpg
     - private-properties/config.json
 
   # An image asset can refer to one or more resolution-specific "variants", see

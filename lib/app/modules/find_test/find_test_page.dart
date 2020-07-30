@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:test_life/app/modules/find_test/model/teste_covid.dart';
 import 'package:test_life/app/modules/find_test/repository/teste_covid_repository.dart';
+import 'package:test_life/app/modules/marcar_teste/marcar_teste_page.dart';
 
 class FindTestPage extends StatefulWidget {
   @override
@@ -53,7 +55,7 @@ class _FindTestPageState extends State<FindTestPage> {
                       var card = CardRepository.cardsTest(searchQuery)[index];
                       return Card(
                         child: ListTile(
-                          onTap: sendToMarcarTeste,
+                          onTap: () => sendToMarcarTeste(card),
                           leading: Container(
                             decoration: new BoxDecoration(
                               borderRadius: new BorderRadius.all(
@@ -120,7 +122,9 @@ class _FindTestPageState extends State<FindTestPage> {
     });
   }
 
-  void sendToMarcarTeste() {
-    //TODO implementar
-  }
+  sendToMarcarTeste(TestCovid card) => Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => MarcarTestePage(testCovid: card)),
+  );
+
 }

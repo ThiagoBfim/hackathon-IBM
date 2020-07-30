@@ -77,7 +77,8 @@ class _OrientacoesPageState extends State<OrientacoesPage> {
             "\n\n- Utilize máscara e cuidado com o próximo.";
       case 1:
         return "- Busque fazer uma unidade de saúde para fazer o teste."
-            "\n\n- Utilize máscara e cuidado com o próximo.";
+            "\n\n- Utilize máscara e cuidado com o próximo."
+            "\n\n- Caso você esteja com COVID, deve manter o isolamento por 14 dias até a remissão da infecção.";
       case 2:
         return "- Tome 2 litros de água por dia;"
             "\n\n- Use dois travesseiros para manter a cabeça elevada e facilitar a respiração;"
@@ -85,7 +86,8 @@ class _OrientacoesPageState extends State<OrientacoesPage> {
             "\n\n- Tome vitamina C através de sucos de limão e chá com limão e mel;"
             "\n\n- Tenha uma alimentação equilibrada;"
             "\n\n- Repouse; "
-            "\n\n- Mantenha o isolamento social.";
+            "\n\n- Mantenha o isolamento social."
+            "\n\n- Caso você esteja com COVID, deve manter o isolamento por 14 dias até a remissão da infecção.";
       default:
         return "- Tome 2 litros de água por dia;"
             "\n\n- Use dois travesseiros para manter a cabeça elevada e facilitar a respiração;"
@@ -93,7 +95,8 @@ class _OrientacoesPageState extends State<OrientacoesPage> {
             "\n\n- Tome vitamina C através de sucos de limão e chá com limão e mel;"
             "\n\n- Tenha uma alimentação equilibrada;"
             "\n\n- Repouse; "
-            "\n\n- Mantenha o isolamento social.";
+            "\n\n- Mantenha o isolamento social."
+            "\n\n- Caso você esteja com COVID, deve manter o isolamento por 14 dias até a remissão da infecção.";
     }
   }
 }
