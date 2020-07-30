@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rounded_date_picker/rounded_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:test_life/app/modules/find_test/model/teste_covid.dart';
 
 class MarcarTestePage extends StatefulWidget {
@@ -14,9 +16,22 @@ class MarcarTestePage extends StatefulWidget {
 }
 
 class _MarcarTestePageState extends State<MarcarTestePage> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  DateTime dateTime;
+  Duration duration;
+
+  @override
+  void initState() {
+    dateTime = DateTime.now();
+    duration = Duration(minutes: 10);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         title: Text(widget.testCovid.title),
@@ -57,8 +72,31 @@ class _MarcarTestePageState extends State<MarcarTestePage> {
     );
   }
 
+  List<DateTime> getListDatesDisabled() {
+    var listDisabled = new List<DateTime>();
+    var now = DateTime.now();
+    for (int i = 1; i <= 200; i++) {
+      listDisabled.add(now.subtract(Duration(days: i)));
+    }
+    return listDisabled;
+  }
+
   ListTile _buildTestTile(BuildContext context, TestCovidDetail element) {
     return ListTile(
+      onTap: () async {
+        DateTime newDateTime = await showRoundedDatePicker(
+            context: context,
+            locale: Locale('pt', 'BR'),
+            initialDate: DateTime.now(),
+            firstDate: DateTime(DateTime.now().year - 1),
+            lastDate: DateTime(DateTime.now().year + 1),
+            borderRadius: 16,
+            theme: ThemeData(primarySwatch: Colors.green),
+            listDateDisabled: getListDatesDisabled());
+        if (newDateTime != null) {
+          setState(() => fillDate(newDateTime));
+        }
+      },
       leading: Container(
         width: 50,
         child: Center(child: element.icon),
@@ -90,6 +128,33 @@ class _MarcarTestePageState extends State<MarcarTestePage> {
       ),
     );
   }
+
+  DateTime fillDate(DateTime newDateTime) {
+    dateTime = newDateTime;
+    _showMaterialDialog();
+  }
+
+  _showMaterialDialog() {
+    showDialog(
+        context: context,
+        builder: (_) => new AlertDialog(
+              title: new Text("Teste marcado com sucesso!"),
+              content: new Text(
+                  "Seu teste foi marcado para a data: ${new DateFormat('dd/MM/yyyy').format(dateTime)}"
+                  "\nVocê pode acompanhar seus testes aqui pelo app."),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text('Fechar'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                )
+              ],
+            ));
+  }
+
+  sendToMarcarTeste(TestCovid card) =>
+      Navigator.of(context).pushNamed("meus-testes");
 
   BoxDecoration _buildBoxShadow() {
     return BoxDecoration(

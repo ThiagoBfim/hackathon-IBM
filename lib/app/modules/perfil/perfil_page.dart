@@ -1,6 +1,8 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:test_life/app/modules/home/bloc/bloc_drag_down.dart';
+import 'package:test_life/app/modules/meus_testes/meus_testes_page.dart';
 
 class PerfilPage extends StatefulWidget {
   bool animated;
@@ -115,6 +117,7 @@ class _PerfilPageState extends State<PerfilPage> {
                 Padding(
                   padding: const EdgeInsets.only(left: 15.0, right: 15.0),
                   child: ListTile(
+                    onTap: sendToMeusTestes,
                     isThreeLine: false,
                     leading: Icon(
                       Icons.favorite,
@@ -172,4 +175,10 @@ class _PerfilPageState extends State<PerfilPage> {
           );
         });
   }
+
+
+  sendToMeusTestes() => Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => MeusTestesPage()),
+  );
 }
