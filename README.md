@@ -1,4 +1,4 @@
-# Aplicativo XoCovid
+# Aplicativo Mediv
 
 Esse projeto faz parte do projeto Call for Code Hackathon.
 Um Hackathon que tem como proposito criar soluções com tecnologia para ajudar no combate contra o COVID-19.
