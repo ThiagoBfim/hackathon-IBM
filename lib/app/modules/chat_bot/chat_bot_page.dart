@@ -71,7 +71,6 @@ class _ChatBotPageState extends State<ChatBotPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Assistente Virtual'),
-        centerTitle: true,
         backgroundColor: Theme.of(context).backgroundColor,
       ),
       body: Scaffold(
@@ -173,7 +172,7 @@ class _ChatBotPageState extends State<ChatBotPage> {
       controller: responseController,
       style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
-        hintText: 'Escreva seus sintomas',
+        hintText: 'Responda de forma simples.',
         hintStyle: TextStyle(color: Colors.white),
         contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
         border: OutlineInputBorder(
@@ -208,7 +207,7 @@ class SmartCovidTest {
     if (watsonText.contains("grave")) {
       testeCovid.risco = 0;
       testeCovid.nomeRisco = "Alto";
-    } else if (watsonText.contains("médio")) {
+    } else if (watsonText.contains("moderado")) {
       testeCovid.risco = 1;
       testeCovid.nomeRisco = "Médio";
     } else if (watsonText.contains("leve")) {
